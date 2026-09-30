@@ -1,0 +1,23 @@
+name = "rech-api"
+main = "index.js"
+compatibility_date = "2026-09-29"
+workers_dev = true
+
+[vars]
+# Только origin, без /имя-репозитория и без завершающего слеша.
+# Для локальной разработки временно добавь ,http://localhost:8080
+ALLOWED_ORIGIN = "https://YOUR_GITHUB_USERNAME.github.io"
+TRANSCRIBE_MODEL = "gpt-4o-mini-transcribe"
+ANALYSIS_MODEL = "gpt-4o-mini"
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }
+
+[observability]
+enabled = false
+
+# Секреты добавляются через wrangler secret put, не в этот файл:
+# OPENAI_API_KEY
+# ACCESS_TOKEN (случайная строка от 32 символов)
